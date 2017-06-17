@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'survey:new' %}">Add new Survey</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Favorite Color</th>
+                <th>Animal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in object_list %}
+                <tr>
+                    <th scope="row">{{ user.id }}</th>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.favorite_color }}</td>
+                    <td>{{ user.animal }}</td>
+                </tr>
+            {% endfor %}
+      </tbody>
+    </table>
+
+{% endblock %}

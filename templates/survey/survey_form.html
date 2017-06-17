@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'survey:list' %}">Survey List</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    <h3 class="card-header">New Survey</h3>
+    <div class="card-block">
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group row {% if form.name.errors %}has-danger{% endif %}">
+                <label for="id_name" class="col-sm-4 col-form-label col-form-label-lg">Name</label>
+                <div class="col-sm-8">
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                        <div class="form-control-feedback">
+                           {% for error in form.name.errors %}{{ error }}{% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group row {% if form.favorite_color.errors %}has-danger{% endif %}">
+                <label for="id_favorite_color" class="col-sm-4 col-form-label col-form-label-lg">Favorite Color</label>
+                <div class="col-sm-8">
+                    {{ form.favorite_color }}
+                    {% if form.favorite_color.errors %}
+                        <div class="form-control-feedback">
+                           {% for error in form.favorite_color.errors %}{{ error }}{% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+
+            <div class="form-group row {% if form.animal.errors %}has-danger{% endif %}">
+                <label for="id_favorite_color" class="col-sm-4 col-form-label col-form-label-lg">Animal</label>
+                <div class="col-sm-8">
+                    {{ form.animal }}
+                    {% if form.animal.errors %}
+                        <div class="form-control-feedback">
+                           {% for error in form.animal.errors %}{{ error }}{% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn btn-lg btn-success">Save</button>
+        </form>
+    </div>
+
+{% endblock %}
